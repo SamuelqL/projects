@@ -2,9 +2,14 @@
 #include <stdio.h>
 
 int main(){
-    for(int i = 0; i < 10; i++)
+    for(int i = 0; i < 30; i++)
     {
-        printf("\n%d", i);
+        if (i%2 == 0)
+        {
+            printf("\n%d", i);     
+        }
+        
     }
+    
     return 0;
 }
