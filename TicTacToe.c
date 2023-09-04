@@ -33,6 +33,9 @@ int main()
         {  
             printBoard();
 
+            printf("Player 1 is X");
+            printf("\nPlayer 2 is O\n");
+
             player1Move();
             winner = checkWinner();
             if(winner != ' ' || checkFreeSpaces() == 0)
