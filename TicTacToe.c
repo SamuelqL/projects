@@ -4,13 +4,15 @@
 #include <time.h>
 
 char board[3][3];
-const char PLAYER = 'X';
+const char PLAYER1 = 'X';
+const char PLAYER2 = 'O';
 const char COMPUTER = 'O';
 
 void resetBoard();
 void printBoard();
 int checkFreeSpaces();
-void playerMove();
+void player1Move();
+void player2Move();
 void computerMove();
 char checkWinner();
 void printWinner(char);
@@ -31,14 +33,14 @@ int main()
         {  
             printBoard();
 
-            playerMove();
+            player1Move();
             winner = checkWinner();
             if(winner != ' ' || checkFreeSpaces() == 0)
             {
             break;
             }
 
-            computerMove();
+            player2Move();
             winner = checkWinner();
             if(winner != ' ' || checkFreeSpaces() == 0)
             {
@@ -94,17 +96,17 @@ int checkFreeSpaces()
     }
     return freeSpaces;
 }
-void playerMove()
+void player1Move()
 {
     int x;
     int y;
 
     do
     {
-        printf("Enter row #(1-3): ");
+        printf("player 1 enter row #(1-3): ");
         scanf("%d", &x);
         x--;
-        printf("Enter column #(1-3): ");
+        printf("player 1 enter column #(1-3): ");
         scanf("%d", &y);
         y--;
 
@@ -114,7 +116,34 @@ void playerMove()
         }
         else
         {
-            board[x][y] = PLAYER;
+            board[x][y] = PLAYER1;
+            break;
+        }
+    } 
+    while (board[x][y] != ' ');
+    
+}
+void player2Move()
+{
+    int x;
+    int y;
+
+    do
+    {
+        printf("player 2 enter row #(1-3): ");
+        scanf("%d", &x);
+        x--;
+        printf("player 2 enter column #(1-3): ");
+        scanf("%d", &y);
+        y--;
+
+        if(board[x][y] != ' ')
+        {
+            printf("Invalid move!\n");
+        }
+        else
+        {
+            board[x][y] = PLAYER2;
             break;
         }
     } 
@@ -174,13 +203,13 @@ char checkWinner()
 }
 void printWinner(char winner)
 {
-    if(winner == PLAYER)
+    if(winner == PLAYER1)
     {
-        printf("YOU WIN!");
+        printf("Player 1 wins!");
     }
-    else if(winner == COMPUTER)
+    else if(winner == PLAYER2)
     {
-        printf("YOU LOSE!");
+        printf("Player 2 wins!");
     }
     else{
         printf("IT'S A TIE!");
