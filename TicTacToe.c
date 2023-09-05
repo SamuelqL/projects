@@ -42,6 +42,7 @@ int main()
             {
             break;
             }
+            printBoard();
 
             player2Move();
             winner = checkWinner();
