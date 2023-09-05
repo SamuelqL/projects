@@ -7,7 +7,10 @@ int main()
     int x2;
     int y1;
     int y2;
-    printf("Enter your first x point: ");
+    printf("****************************\n");
+    printf("SLOPE CALCULATOR OF 2 POINTS");
+    printf("\n****************************");
+    printf("\nEnter your first x point: ");
     scanf("%d", &x1);
     printf("Enter your first y point: ");
     scanf("%d", &y1);
