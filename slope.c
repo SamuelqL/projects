@@ -32,7 +32,7 @@ int main()
 
     int slope = rise / run;
 
-    printf("The slope of your 2 points is: %d", slope);
+    printf("\nThe slope of your 2 points is: %d", slope);
 
     return 0;
 }
