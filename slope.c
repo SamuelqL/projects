@@ -24,8 +24,8 @@ int main()
     scanf("%d", &y2);
     printf("(%d,%d)", x2, y2);
 
-    int rise;
-    int run;
+    float rise;
+    float run;
 
     run = x2 - x1;
     rise = y2 - y1;
