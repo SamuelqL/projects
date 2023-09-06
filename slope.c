@@ -30,9 +30,9 @@ int main()
     run = x2 - x1;
     rise = y2 - y1;
 
-    int slope = rise / run;
+    float slope = rise / run;
 
-    printf("\nThe slope of your 2 points is: %d", slope);
+    printf("\nThe slope of your 2 points is: %f", slope);
 
     return 0;
 }
