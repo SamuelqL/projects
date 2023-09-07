@@ -10,9 +10,9 @@ int main()
     printf("****************************\n");
     printf("SLOPE CALCULATOR OF 2 POINTS");
     printf("\n****************************");
-    printf("\nEnter your first point: ");
+    printf("\nEnter your first point(x,y): ");
     scanf("%d,%d", &x1, &y1);
-    printf("\nEnter your second point: ");
+    printf("\nEnter your second point(x,y): ");
     scanf("%d,%d", &x2, &y2);
     printf("(%d, )", x2);
     
