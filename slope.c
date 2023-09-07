@@ -3,18 +3,18 @@
 
 int main()
 {
-    int x1;
-    int x2;
-    int y1;
-    int y2;
+    float x1;
+    float x2;
+    float y1;
+    float y2;
     printf("****************************\n");
     printf("SLOPE CALCULATOR OF 2 POINTS");
     printf("\n****************************");
     printf("\nEnter your first point(x,y): ");
-    scanf("%d,%d", &x1, &y1);
+    scanf("%f,%f", &x1, &y1);
     printf("\nEnter your second point(x,y): ");
-    scanf("%d,%d", &x2, &y2);
-    printf("(%d, )", x2);
+    scanf("%f,%f", &x2, &y2);
+    
     
 
     float rise;
