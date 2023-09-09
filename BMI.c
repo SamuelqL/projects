@@ -15,9 +15,9 @@ int main()
     float TotalInches = (feet * 12) + inches;
     float squared = TotalInches * TotalInches;
 
-    float BMI = weight/squared;
+    float BMI = (weight/squared) * 703;
 
-    printf("Your BMI is %f", BMI);
+    printf("Your BMI is %.2f", BMI);
 
     if(BMI >= 30)
     {
