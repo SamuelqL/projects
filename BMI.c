@@ -21,11 +21,11 @@ int main()
 
     if(BMI >= 30)
     {
-        printf("\nYou are clinically obeset");
+        printf("\nYou are clinically obeset, eat a salad ya donut!");
     }
     else
     {
-        printf("\nYou are not obese!");
+        printf("\nYou are not obese! You can continue eating your Oreos");
     }
 
 
