@@ -208,9 +208,9 @@ void Number_Guessing_Game()
 {
     const int MIN = 1;
     const int MAX = 100;
-    int guess;
+    int guess = 0;
     int guesses = 0;
-    int answer;
+    int answer = 0;
 
     srand(time(0));
     answer = (rand() % MAX) + MIN;
@@ -234,7 +234,7 @@ void Number_Guessing_Game()
 
     printf("*************************\n");
     printf("answer: %d\n", answer);
-    printf("guesses: %d\n", &guesses);
+    printf("guesses: %d\n", guesses);
     printf("*************************");
 }
 
