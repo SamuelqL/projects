@@ -2,11 +2,14 @@
 #include <math.h>
 #include <ctype.h>
 #include <stdbool.h>
+#include <stdlib.h>
+#include <time.h>
 
 void Area_Circumference();
 void Temperature_Converter();
 void BMI_Calculator();
 void Slope_Calculator();
+void Number_Guessing_Game();
 
 
 int main()
@@ -15,9 +18,10 @@ int main()
     do
     {
         char choices[][100] = {"A. Circumference and area of a circle with radius",
-                           "B. Temperature converter",
-                           "C. BMI calculator",
-                           "D. Slope calculator of 2 points"};
+                               "B. Temperature converter",
+                               "C. BMI calculator",
+                               "D. Slope calculator of 2 points",
+                               "E. Number guessing game"};
 
         char choice;
         bool isValidChoice = false;
@@ -35,7 +39,7 @@ int main()
             scanf(" %c", &choice);
             choice = toupper(choice);
             
-            isValidChoice = (choice == 'A' || choice == 'B'|| choice == 'C'|| choice == 'D');
+            isValidChoice = (choice == 'A' || choice == 'B'|| choice == 'C'|| choice == 'D'|| choice == 'E');
             
             if (!isValidChoice){
                 printf("\nThat is not a valid choice. Please enter again.");
@@ -60,6 +64,10 @@ int main()
         else if(choice == 'D')
             {
                 Slope_Calculator();
+            }
+        else if(choice =='E')
+            {
+                Number_Guessing_Game();
             }
         
 
@@ -195,6 +203,39 @@ void Slope_Calculator()
     float slope = rise / run;
 
     printf("\nThe slope of your 2 points is: %f", slope);
+}
+void Number_Guessing_Game()
+{
+    const int MIN = 1;
+    const int MAX = 100;
+    int guess;
+    int guesses = 0;
+    int answer;
+
+    srand(time(0));
+    answer = (rand() % MAX) + MIN;
+
+    do{
+        printf("\nEnter a number guess: ");
+        scanf("%d", &guess);
+        if (guess > answer)
+        {
+            printf("Too high!\n");
+        }
+        else if (guess < answer)
+        {
+          printf("Too low!\n");  
+        }
+        else{
+            printf("\nCORRECT!\n");
+        }
+        guesses++;
+    }while(guess != answer);
+
+    printf("*************************\n");
+    printf("answer: %d\n", answer);
+    printf("guesses: %d\n", &guesses);
+    printf("*************************");
 }
 
 
