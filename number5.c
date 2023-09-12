@@ -54,9 +54,9 @@ int main()
 
     const int MIN = 1;
     const int MAX = 100;
-    int guess;
-    int guesses;
-    int answer;
+    int guess = 0;
+    int guesses = 0;
+    int answer = 0;
     //uses the curent time as a seed
     srand(time(0));
     //generate a random number between MIN & MAX
