@@ -8,14 +8,14 @@ int main()
     char buffer[BUFFER_SIZE];
     bool keep_going = true;
     FILE *pF;
-    pF = fopen("C:\\Users\\samue\\OneDrive\\Desktop\\codingting.txt", "w");
+    pF = fopen("C:\\Users\\samue\\OneDrive\\Desktop\\codingting.txt", "a");
 
     if(pF == NULL)
     {
         printf("Error opening file.\n");
         return 1;
     }
-    printf("Enter how many pushups you did today: ");
+    printf("Enter how many pushups did you do today: ");
     fgets(buffer, BUFFER_SIZE, stdin);
     fputs(buffer, pF);
     fclose(pF);
