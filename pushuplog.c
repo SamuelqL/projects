@@ -7,40 +7,48 @@
 #include <math.h>
 #define BUFFER_SIZE 1024
 
-bool hasEnteredAlready( const char *filename, const char *current_date){
+bool hasEnteredAlready( const char *filename, char *current_date){
+
     FILE *fd;                           
       
    static const long max_len = 55+ 1;  
-   char buff[max_len + 1];            
+   char buff[max_len + 1];           
 
-if ((fd = fopen(filename, "rb")) != NULL)  {      
-
+if ((fd = fopen(filename, "rb")) != NULL)  {   
+    printf("HiAgain\n");
+     printf("%s\n", current_date);
     fseek(fd, -max_len, SEEK_END);           
     fread(buff, max_len-1, 1, fd);            
     fclose(fd);                               
 
-    buff[max_len-1] = '\0';                   
+    buff[max_len-1] = '\0';    
+    //check if it is a new/empty file
+    if (strlen(buff) < 10){
+        return false;
+    }             
     char *last_newline = strrchr(buff, '\n'); 
+    
     char *last_line = last_newline+1; 
-    printf("%s\n", last_line);
+    printf("\n%s", last_line);
+
     
     // split line by pipe
     char *last_date;
     
     // get first element of token as date
     last_date = strtok(last_line, "|"); 
-    printf("%s", last_date);
-
+printf("\n%s", last_date);
+printf("\n%s", current_date);
     // compare last_date to curreent date
     
     if (strcmp(last_date, current_date)==0){
+        
         return true;
     } else {
         return false;
     }
-    // char str_date[50] = ("%s", last_line);
-    // const char p[2] = "|";
-    
+
+
     // while(token != NULL)
     // {
     //     printf("\n%s", token);
@@ -60,18 +68,20 @@ int main()
 {
     time_t t = time(NULL);
     struct tm date = *localtime(&t);
-    const char filename[] = "C:\\Users\\samue\\OneDrive\\Desktop\\codingting.txt";
-    // 
-
+    const char filename[] = "C:\\Users\\samue\\OneDrive\\Desktop\\codingting1.txt";
+    
+printf("Hi\n");
+    // char current_date[10];
     char *current_date;
     sprintf(current_date, "%02d-%02d-%d", date.tm_mon + 1, date.tm_mday, date.tm_year + 1900);
+
     if (hasEnteredAlready(filename, current_date)){
         printf("\nYou already logged");
         return 0;
     }
-    // printf("%s", current_date);
-
-    /*FILE *ppF = fopen(filename, "a");
+    else{
+        printf("Hi");
+        FILE *ppF = fopen(filename, "a");
     fprintf(ppF, "%02d-%02d-%d|%02d:%02d, ", date.tm_mon + 1, date.tm_mday, date.tm_year + 1900, date.tm_hour, date.tm_min);
     fclose(ppF);
     char buffer[BUFFER_SIZE];
@@ -89,19 +99,20 @@ int main()
     fputs(buffer, pF);
     fclose(pF);
 
-    pF = fopen(filename, "r");
+    // pF = fopen(filename, "r");
 
-    int current_line = 1;
-    char c;
-    do
-    {
-        c = fgetc(pF);
-        if(c == '\n') current_line++;
-    } while (c != EOF);
+    // int current_line = 1;
+    // char c;
+    // do
+    // {
+    //     c = fgetc(pF);
+    //     if(c == '\n') current_line++;
+    // } while (c != EOF);
 
-    printf("%d", current_line - 1);*/
+    // printf("%d", current_line - 1);
+    // fclose(pF);
+    }
     
-
     /*while(keep_going)
     {
         fgets(buffer, BUFFER_SIZE, stdin);
