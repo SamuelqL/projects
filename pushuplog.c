@@ -15,7 +15,6 @@ bool hasEnteredAlready( const char *filename, char *current_date){
    char buff[max_len + 1];           
 
 if ((fd = fopen(filename, "rb")) != NULL)  {   
-    printf("HiAgain\n");
      printf("%s\n", current_date);
     fseek(fd, -max_len, SEEK_END);           
     fread(buff, max_len-1, 1, fd);            
@@ -68,9 +67,9 @@ int main()
 {
     time_t t = time(NULL);
     struct tm date = *localtime(&t);
-    const char filename[] = "C:\\Users\\samue\\OneDrive\\Desktop\\codingting1.txt";
+    const char filename[] = "C:\\Users\\samue\\OneDrive\\Desktop\\codingting.txt";
     
-printf("Hi\n");
+
     // char current_date[10];
     char *current_date;
     sprintf(current_date, "%02d-%02d-%d", date.tm_mon + 1, date.tm_mday, date.tm_year + 1900);
@@ -80,7 +79,6 @@ printf("Hi\n");
         return 0;
     }
     else{
-        printf("Hi");
         FILE *ppF = fopen(filename, "a");
     fprintf(ppF, "%02d-%02d-%d|%02d:%02d, ", date.tm_mon + 1, date.tm_mday, date.tm_year + 1900, date.tm_hour, date.tm_min);
     fclose(ppF);
