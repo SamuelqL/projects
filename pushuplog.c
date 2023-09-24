@@ -15,7 +15,7 @@ bool hasEnteredAlready( const char *filename, char *current_date){
    char buff[max_len + 1];           
 
 if ((fd = fopen(filename, "rb")) != NULL)  {   
-     printf("%s\n", current_date);
+    printf("%s\n", current_date);
     fseek(fd, -max_len, SEEK_END);           
     fread(buff, max_len-1, 1, fd);            
     fclose(fd);                               
@@ -36,8 +36,8 @@ if ((fd = fopen(filename, "rb")) != NULL)  {
     
     // get first element of token as date
     last_date = strtok(last_line, "|"); 
-printf("\n%s", last_date);
-printf("\n%s", current_date);
+    printf("\n%s", last_date);
+    printf("\n%s", current_date);
     // compare last_date to curreent date
     
     if (strcmp(last_date, current_date)==0){
@@ -73,7 +73,7 @@ int main()
     // char current_date[10];
     char *current_date;
     sprintf(current_date, "%02d-%02d-%d", date.tm_mon + 1, date.tm_mday, date.tm_year + 1900);
-
+    
     if (hasEnteredAlready(filename, current_date)){
         printf("\nYou already logged");
         return 0;
