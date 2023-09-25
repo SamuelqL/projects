@@ -27,8 +27,7 @@ if ((fd = fopen(filename, "rb")) != NULL)  {
     }             
     char *last_newline = strrchr(buff, '\n'); 
     
-    char *last_line = last_newline+1; 
-    printf("\n%s", last_line);
+    char *last_line = last_newline+1;
 
     
     // split line by pipe
@@ -36,8 +35,6 @@ if ((fd = fopen(filename, "rb")) != NULL)  {
     
     // get first element of token as date
     last_date = strtok(last_line, "|"); 
-    printf("\n%s", last_date);
-    printf("\n%s", current_date);
     // compare last_date to curreent date
     
     if (strcmp(last_date, current_date)==0){
@@ -74,13 +71,16 @@ int main()
     char *current_date;
     sprintf(current_date, "%02d-%02d-%d", date.tm_mon + 1, date.tm_mday, date.tm_year + 1900);
     
-    if (hasEnteredAlready(filename, current_date)){
+    if(hasEnteredAlready(filename, current_date)){
         printf("\nYou already logged");
-        return 0;
+        
     }
     else{
+        FILE *pppF = fopen(filename, "w");
+        fprintf(pppF, "PUSHUP LOG");
+        fclose(pppF);
         FILE *ppF = fopen(filename, "a");
-    fprintf(ppF, "%02d-%02d-%d|%02d:%02d, ", date.tm_mon + 1, date.tm_mday, date.tm_year + 1900, date.tm_hour, date.tm_min);
+    fprintf(ppF, "\n%02d-%02d-%d|%02d:%02d, ", date.tm_mon + 1, date.tm_mday, date.tm_year + 1900, date.tm_hour, date.tm_min);
     fclose(ppF);
     char buffer[BUFFER_SIZE];
     bool keep_going = true;
