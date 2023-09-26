@@ -67,20 +67,10 @@ int main()
     const char filename[] = "C:\\Users\\samue\\OneDrive\\Desktop\\codingting.txt";
     
 
-    // char current_date[10];
     char *current_date;
     sprintf(current_date, "%02d-%02d-%d", date.tm_mon + 1, date.tm_mday, date.tm_year + 1900);
-    
-    if(hasEnteredAlready(filename, current_date)){
-        printf("\nYou already logged");
-        
-    }
-    else{
-        FILE *pppF = fopen(filename, "w");
-        fprintf(pppF, "PUSHUP LOG");
-        fclose(pppF);
-        FILE *ppF = fopen(filename, "a");
-    fprintf(ppF, "\n%02d-%02d-%d|%02d:%02d, ", date.tm_mon + 1, date.tm_mday, date.tm_year + 1900, date.tm_hour, date.tm_min);
+    FILE *ppF = fopen(filename, "a");
+    fprintf(ppF, "%02d-%02d-%d|%02d:%02d, ", date.tm_mon + 1, date.tm_mday, date.tm_year + 1900, date.tm_hour, date.tm_min);
     fclose(ppF);
     char buffer[BUFFER_SIZE];
     bool keep_going = true;
@@ -97,6 +87,22 @@ int main()
     fputs(buffer, pF);
     fclose(pF);
 
+    char first_line[100];
+    FILE *fptr;
+    if ((fptr = fopen(filename, "r")) == NULL) {
+        printf("Error! File cannot be opened.");
+        
+        exit(1);
+    }
+
+    fscanf(fptr, "%[^\n]", first_line);
+    
+    char *pushup_num;
+
+    pushup_num = strtok(first_line, ","); 
+    
+    printf("\n%s", pushup_num);
+
     // pF = fopen(filename, "r");
 
     // int current_line = 1;
@@ -109,7 +115,6 @@ int main()
 
     // printf("%d", current_line - 1);
     // fclose(pF);
-    }
     
     /*while(keep_going)
     {
