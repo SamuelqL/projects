@@ -60,73 +60,151 @@ if ((fd = fopen(filename, "rb")) != NULL)  {
 return false;
 }
 
-int main()
-{
+void log_pushup(char *filename){
+      // Ask user for pushup // store pushup number into variable
+    printf("\nEnter how many pushups did you do today: ");
+    char pushups[BUFFER_SIZE];
+    fgets(pushups, BUFFER_SIZE, stdin);
+    
+    
+    // open file
+    FILE *ppF = fopen(filename, "a");
+    // store timestamp and pushup
     time_t t = time(NULL);
     struct tm date = *localtime(&t);
-    const char filename[] = "C:\\Users\\samue\\OneDrive\\Desktop\\codingting.txt";
-    
-
-    char *current_date;
-    sprintf(current_date, "%02d-%02d-%d", date.tm_mon + 1, date.tm_mday, date.tm_year + 1900);
-    FILE *ppF = fopen(filename, "a");
-    fprintf(ppF, "%02d-%02d-%d|%02d:%02d, ", date.tm_mon + 1, date.tm_mday, date.tm_year + 1900, date.tm_hour, date.tm_min);
+    // write datetime and pushup to file
+    fprintf(ppF, "%02d-%02d-%d|%02d:%02d, %s", date.tm_mon + 1, date.tm_mday, date.tm_year + 1900, date.tm_hour, date.tm_min, pushups);
+    // closee file  
     fclose(ppF);
-    char buffer[BUFFER_SIZE];
-    bool keep_going = true;
-    FILE *pF;
-    pF = fopen(filename, "a");
+                
+}
 
+char *get_log_line(int line_number, const char *filename){
+    //variable to hold line;
+    static char line[256]; /* or other suitable maximum line size */
+
+    //open file
+    FILE *pF;
+    pF = fopen(filename, "r");
     if(pF == NULL)
     {
+        // print error then exit
        printf("Error opening file.\n");
-       return 1;
-    }               
-    printf("\nEnter how many pushups did you do today: ");
-    fgets(buffer, BUFFER_SIZE, stdin);
-    fputs(buffer, pF);
-    fclose(pF);
-
-    char first_line[100];
-    FILE *fptr;
-    if ((fptr = fopen(filename, "r")) == NULL) {
-        printf("Error! File cannot be opened.");
-        
-        exit(1);
+       return line;
     }
-
-    fscanf(fptr, "%[^\n]", first_line);
-    
-    char *pushup_num;
-
-    pushup_num = strtok(first_line, ","); 
-    
-    printf("\n%s", pushup_num);
-
-    // pF = fopen(filename, "r");
-
-    // int current_line = 1;
-    // char c;
-    // do
-    // {
-    //     c = fgetc(pF);
-    //     if(c == '\n') current_line++;
-    // } while (c != EOF);
-
-    // printf("%d", current_line - 1);
-    // fclose(pF);
-    
-    /*while(keep_going)
+    else
     {
-        fgets(buffer, BUFFER_SIZE, stdin);
+        int count = 0;
         
-    if (strcmp(buffer, "quit\n")== 0)
-    {
-        keep_going = false;
+        while (fgets(line, sizeof line, pF) != NULL) /* read a line */
+        {
+            if (count == line_number)
+            {
+                //use line or in a function return it
+                //in case of a return first close the file with "fclose(file);"
+                fclose(pF);
+                return line;
+                
+            }
+            else
+            {
+                count++;
+            }
+        }
+        fclose(pF);
+
+        return line;
+        
     }
-    else fputs(buffer, pF);
+
+}
+
+
+char *get_pushup_number(char* log_record, int element){
+
+    //variable to hold pushup;
+    static char pushups[256]; /* or other suitable maximum line size */
+
+    const char s[2] = ",";
+    char *token;
+   
+    /* get the first token */
+    token = strtok(log_record, s);
+   
+    int count = 0;
+    // /* walk through other tokens */
+    while( token != NULL ) {
+        if (count == element){
+            sprintf(pushups, "%s", token);
+            break;
+        }else{
+            token = strtok(NULL, s);
+            count++;
+        }
     }
-    fclose(pF);*/
+    return pushups;
+}    
+
+
+int main()
+{
+    
+    char filename[] = "C:\\Users\\samue\\OneDrive\\Desktop\\codingting.txt";
+    
+    // function to record pushup
+    // log_pushup(filename);
+    
+    // get a line of log
+    char *log_line = get_log_line(1, filename);
+
+    // extract out pushup number
+    char *pushups = get_pushup_number(log_line, 0);
+
+    printf("%s", pushups);
+    // get_pushup_number(log_line);
+    // char *current_date;
+    // sprintf(current_date, "%02d-%02d-%d", date.tm_mon + 1, date.tm_mday, date.tm_year + 1900);
+    
+
+    //     
+        
+    //     char *pushup_num;
+
+    //     pushup_num = strtok(first_line, ","); 
+        
+    //     //printf("\n%s", pushup_num);
+    //     while( pushup_num != NULL ) {
+    //       printf( " %s\n", pushup_num);
+        
+    //       pushup_num = strtok(NULL, first_line);
+    //    }
+
+
+
+        // pF = fopen(filename, "r");
+
+        // int current_line = 1;
+        // char c;
+        // do
+        // {
+        //     c = fgetc(pF);
+        //     if(c == '\n') current_line++;
+        // } while (c != EOF);
+
+        // printf("%d", current_line - 1);
+        // fclose(pF);
+        
+        /*while(keep_going)
+        {
+            fgets(buffer, BUFFER_SIZE, stdin);
+            
+        if (strcmp(buffer, "quit\n")== 0)
+        {
+            keep_going = false;
+        }
+        else fputs(buffer, pF);
+        }
+        fclose(pF);*/
     
     return 0;
 
