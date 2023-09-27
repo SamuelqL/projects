@@ -163,7 +163,7 @@ int main()
     printf("%s", pushups);
     // get_pushup_number(log_line);
     // char *current_date;
-    // sprintf(current_date, "%02d-%02d-%d", date.tm_mon + 1, date.tm_mday, date.tm_year + 1900);
+    //sprintf(current_date, "%02d-%02d-%d", date.tm_mon + 1, date.tm_mday, date.tm_year + 1900);
     
 
     //     
