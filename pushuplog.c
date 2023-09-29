@@ -73,7 +73,7 @@ void log_pushup(char *filename){
     time_t t = time(NULL);
     struct tm date = *localtime(&t);
     // write datetime and pushup to file
-    fprintf(ppF, "%02d-%02d-%d|%02d:%02d, %s", date.tm_mon + 1, date.tm_mday, date.tm_year + 1900, date.tm_hour, date.tm_min, pushups);
+    fprintf(ppF, "%02d-%02d-%d|%02d:%02d,%s", date.tm_mon + 1, date.tm_mday, date.tm_year + 1900, date.tm_hour, date.tm_min, pushups);
     // closee file  
     fclose(ppF);
                 
@@ -120,16 +120,15 @@ char *get_log_line(int line_number, const char *filename){
 }
 
 
-char *get_pushup_number(char* log_record, int element){
+char *get_line_element(char* log_record, int element, char* seperator){
 
     //variable to hold pushup;
-    static char pushups[256]; /* or other suitable maximum line size */
+    static char pushups[256]; /* or other suitable maximum line size */ 
 
-    const char s[2] = ",";
     char *token;
    
     /* get the first token */
-    token = strtok(log_record, s);
+    token = strtok(log_record, seperator);
    
     int count = 0;
     // /* walk through other tokens */
@@ -138,7 +137,7 @@ char *get_pushup_number(char* log_record, int element){
             sprintf(pushups, "%s", token);
             break;
         }else{
-            token = strtok(NULL, s);
+            token = strtok(NULL, seperator);
             count++;
         }
     }
@@ -152,13 +151,14 @@ int main()
     char filename[] = "C:\\Users\\samue\\OneDrive\\Desktop\\codingting.txt";
     
     // function to record pushup
-    // log_pushup(filename);
+    log_pushup(filename);
     
     // get a line of log
-    char *log_line = get_log_line(1, filename);
+    char *log_line = get_log_line(0, filename);
 
     // extract out pushup number
-    char *pushups = get_pushup_number(log_line, 0);
+   char *s = ",";
+    char *pushups = get_line_element(log_line, 1, s);
 
     printf("%s", pushups);
     // get_pushup_number(log_line);
