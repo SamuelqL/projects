@@ -8,7 +8,7 @@
 #define BUFFER_SIZE 1024
 
 bool hasEnteredAlready( const char *filename, char *current_date){
-
+    
     FILE *fd;                           
       
    static const long max_len = 55+ 1;  
@@ -35,15 +35,9 @@ if ((fd = fopen(filename, "rb")) != NULL)  {
     
     // get first element of token as date
     last_date = strtok(last_line, "|"); 
+    printf("%s", last_date);
     // compare last_date to curreent date
     
-    if (strcmp(last_date, current_date)==0){
-        
-        return true;
-    } else {
-        return false;
-    }
-
 
     // while(token != NULL)
     // {
@@ -157,10 +151,10 @@ int main()
     char *log_line = get_log_line(0, filename);
 
     // extract out pushup number
-   char *s = ",";
-    char *pushups = get_line_element(log_line, 1, s);
+    //char *s = ",";
+    //char *pushups = get_line_element(log_line, 1, s);
 
-    printf("%s", pushups);
+    //printf("%s", pushups);
     // get_pushup_number(log_line);
     // char *current_date;
     //sprintf(current_date, "%02d-%02d-%d", date.tm_mon + 1, date.tm_mday, date.tm_year + 1900);
