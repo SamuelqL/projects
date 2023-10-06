@@ -53,7 +53,7 @@ if ((fd = fopen(filename, "rb")) != NULL)  {
 }
 return false;
 }*/
-void get_line_num(char *filename){
+int get_line_num(char *filename){
     FILE *pF;
     pF = fopen(filename, "r");
 
@@ -68,9 +68,10 @@ void get_line_num(char *filename){
     //printf("%d", current_line);
     fclose(pF);
 
-    
+    return current_line;    
 
 }
+
 
 void log_pushup(char *filename){
       // Ask user for pushup // store pushup number into variable
@@ -173,8 +174,7 @@ int main()
     //char *pushups = get_line_element(log_line, 1, s);
     //printf("%s", pushups);
 
-    int current_line;
-    get_line_num(filename);
+    int current_line = get_line_num(filename);
     char *last_line = get_log_line(current_line, filename);
 
     printf("\n%s", last_line);
