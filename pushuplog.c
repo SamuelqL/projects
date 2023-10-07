@@ -167,7 +167,8 @@ int main()
     log_pushup(filename);
     
     // get a line of log
-    char *log_line = get_log_line(0, filename);
+    char *first_line = get_log_line(0, filename);
+    printf("\n%s", first_line);
     
     // extract out pushup number
     //char *s = ",";
