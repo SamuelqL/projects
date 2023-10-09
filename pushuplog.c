@@ -168,7 +168,11 @@ int main()
     
     // get a line of log
     char *first_line = get_log_line(0, filename);
-    printf("\n%s", first_line);
+    char p[2] = "|";
+    char *first_date;
+
+    first_date = strtok(first_line, p);
+    printf("\n%s", first_date);
     
     // extract out pushup number
     //char *s = ",";
@@ -177,8 +181,10 @@ int main()
 
     int current_line = get_line_num(filename);
     char *last_line = get_log_line(current_line, filename);
+    char *last_date;
 
-    printf("\n%s", last_line);
+    last_date = strtok(last_line, p);
+    printf("\n%s", last_date);
 
     // get_pushup_number(log_line);
     // char *current_date;
