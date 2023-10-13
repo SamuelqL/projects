@@ -172,7 +172,6 @@ int main()
     char *first_date;
 
     first_date = strtok(first_line, p);
-    printf("\n%s", first_date);
     
     // extract out pushup number
     //char *s = ",";
@@ -184,7 +183,8 @@ int main()
     char *last_date;
 
     last_date = strtok(last_line, p);
-    printf("\n%s", last_date);
+    
+
 
     // get_pushup_number(log_line);
     // char *current_date;
