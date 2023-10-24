@@ -185,12 +185,14 @@ int main()
 
     last_date = strtok(last_line, p);
     printf("\n%s", last_date);
+
+   
     
 
 
     // get_pushup_number(log_line);
     // char *current_date;
-    //sprintf(current_date, "%02d-%02d-%d", date.tm_mon + 1, date.tm_mday, date.tm_year + 1900);
+    
     
     return 0;
 
