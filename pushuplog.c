@@ -1,3 +1,5 @@
+#define _XOPEN_SOURCE 700
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
@@ -5,6 +7,7 @@
 #include <stdbool.h>
 #include <time.h>
 #include <math.h>
+
 #define BUFFER_SIZE 1024
 
 /*bool hasEnteredAlready( const char *filename, char *current_date){
@@ -172,7 +175,7 @@ int main()
     char *first_date;
 
     first_date = strtok(first_line, p);
-    printf("%s", first_date);
+    
     
     // extract out pushup number
     //char *s = ",";
@@ -184,9 +187,15 @@ int main()
     char *last_date;
 
     last_date = strtok(last_line, p);
-    printf("\n%s", last_date);
+    
 
-   
+    //char str[] = *first_date;
+    struct tm tm;
+    strptime(first_date, "%d", &tm);
+    printf("Year: %d\n", tm.tm_year + 1900);
+    printf("Month: %d\n", tm.tm_mon + 1);
+    printf("Day: %d\n", tm.tm_mday);
+    
     
 
 
