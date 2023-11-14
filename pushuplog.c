@@ -187,16 +187,6 @@ int main()
     last_date = strtok(last_line, p);
     
 
-    //char str[] = *first_date;
-    struct tm tm;
-    strptime(first_date, "%d", &tm);
-    printf("Year: %d\n", tm.tm_year + 1900);
-    printf("Month: %d\n", tm.tm_mon + 1);
-    printf("Day: %d\n", tm.tm_mday);
-    
-    
-
-
     // get_pushup_number(log_line);
     // char *current_date;
     
