@@ -156,8 +156,25 @@ char *get_line_element(char* log_record, int element, char* seperator){
         }
     }
     return pushups;
-}    
+} 
+time_t string_to_time(char* date_string) {
+    struct tm tm_value = {0};
+    time_t time_value;
+    int year, month, day;
 
+    // Parse the date string using sscanf()
+    sscanf(date_string, "%d-%d-%d", &month, &day, &year);
+
+    // Set the fields of the struct tm value
+    tm_value.tm_year = year - 1900;
+    tm_value.tm_mon = month - 1;
+    tm_value.tm_mday = day;
+
+    // Convert the struct tm value to a time_t value
+    time_value = mktime(&tm_value);
+
+    return time_value;
+}   
 
 int main()
 {
@@ -170,10 +187,12 @@ int main()
     // get a line of log
     char *first_line = get_log_line(0, filename);
     char p[2] = "|";
-    char *first_date;
+    char *first_date_string;
 
-    first_date = strtok(first_line, p);
-    
+    first_date_string = strtok(first_line, p);
+    // 2023-11-13
+
+    time_t first_date_time = string_to_time(first_date_string);
     
     // extract out pushup number
     //char *s = ",";
@@ -182,13 +201,21 @@ int main()
 
     int current_line = get_line_num(filename);
     char *last_line = get_log_line(current_line, filename);
-    char *last_date;
+    char *last_date_string;
 
-    last_date = strtok(last_line, p);
+    last_date_string = strtok(last_line, p);
+
+    time_t last_date_time = string_to_time(last_date_string);
+
     
+    int total_seconds = difftime(last_date_time, first_date_time);
+    int days = total_seconds/(60*60*24);
+
+    printf("%d", days);
 
     // get_pushup_number(log_line);
     // char *current_date;
+    
     
     
     return 0;
