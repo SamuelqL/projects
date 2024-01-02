@@ -8,52 +8,6 @@
 
 #define BUFFER_SIZE 1024
 
-/*bool hasEnteredAlready( const char *filename, char *current_date){
-    
-    FILE *fd;                           
-      
-   static const long max_len = 55+ 1;  
-   char buff[max_len + 1];           
-
-if ((fd = fopen(filename, "rb")) != NULL)  {   
-    printf("%s\n", current_date);
-    fseek(fd, -max_len, SEEK_END);           
-    fread(buff, max_len-1, 1, fd);            
-    fclose(fd);                               
-
-    buff[max_len-1] = '\0';    
-    //check if it is a new/empty file
-    if (strlen(buff) < 10){
-        return false;
-    }             
-    char *last_newline = strrchr(buff, '\n'); 
-    
-    char *last_line = last_newline+1;
-
-    
-    // split line by pipe
-    char *last_date;
-    
-    // get first element of token as date
-    last_date = strtok(last_line, "|"); 
-    printf("%s", last_date);
-    // compare last_date to curreent date
-    
-
-    // while(token != NULL)
-    // {
-    //     printf("\n%s", token);
-        
-    //     token = strtok(NULL, p);
-    // }
-    
-    
-    // if same return true
-    // if false rretun false
-    
-}
-return false;
-}*/
 int get_line_num(char *filename){
     FILE *pF;
     pF = fopen(filename, "r");
