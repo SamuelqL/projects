@@ -26,7 +26,7 @@ int main(){
 
     printf("\n%d", E);
 
-    const double PI = 3.14159;
+    const double PI = 3.141592;
     double radius;
     double circumference;
     double area;
